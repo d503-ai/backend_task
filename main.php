@@ -1,4 +1,6 @@
 <?php
+error_reporting(E_ALL & ~E_WARNING);
+
 require_once './Models/TableModel.php';
 require_once './Views/TableView.php';
 require_once './Controllers/TableController.php';
@@ -6,36 +8,39 @@ require_once './Controllers/TableController.php';
 // Input data
 $arr = [
     [
-        123 => 'Baratheon',
-        'Sigil' => 'A crowned stag',
-        456 => 'Ours is the Fury',
-        'Words' => 'Ours is the Fury',
-        'Location' => 'Storm\'s End',
+        'Name' => 'Jon Snow',
+        'Age' => 23,
+        'IsAlive' => true,
+        'Titles' => ['Lord Commander', 'King in the North'],
+        'Parents' => [
+            'Father' => 'Eddard Stark',
+            'Mother' => 'Lyanna Stark',
+        ],
     ],
     [
-        'Leader' => 'Eddard Stark',
-        '' => 'Stark',
-        'Motto' => 'Winter is Coming',
-        'Sigil' => 'A gray direwolf',
-        'Words' => '',
-        'Location' => 12335,
-    ],
-    [
-        'House' => 'Lannister',
-        'Leader' => 'Tywin Lannister',
-        'Sigil' => 'A golden lion',
-        'Words' => 'Hear Me Roar!',
-        'Location' => 'Casterly Rock',
-    ],
-    [
-        'Q' => 'Z',
+        'Name' => 'Daenerys Targaryen',
+        'Age' => 29,
+        'IsAlive' => true,
+        'Titles' => ['Mother of Dragons', 'Breaker of Chains'],
+        'Parents' => [
+            'Father' => '',
+            'Mother' => 'Queen Rhaella Targaryen',
+        ],
     ],
 ];
 
 
-$model = new TableModel($arr);
-$view = new TableView();
-$controller = new TableController($model, $view);
+try
+{
+    $model = new TableModel($arr);
+    $view = new TableView();
+    $controller = new TableController($model, $view);
+}
+catch (Throwable $e)
+{
+    echo "An error occured: " . $e->getMessage();
+    exit();
+}
 
 $controller->displayTable();
 ?>

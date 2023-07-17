@@ -3,10 +3,14 @@ class TableModel
 {
     private $data;
     
-    public function __construct(array $data)
+    public function __construct($data)
     {
+        if (!is_array($data)) 
+        {
+            throw new InvalidArgumentException('Input data must be an array!');
+        }
         $this->data = $data;
-    }
+    }    
 
     // Generating and returning the ASCII table
     public function getTable()
