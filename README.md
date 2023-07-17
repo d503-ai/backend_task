@@ -35,6 +35,7 @@ The ASCII Table Generator application follows the Model-View-Controller (MVC) ar
 
 ### Controller
 - The Controller component manages the interaction between the Model and View.
-- In this application, the Controller functionality is implicit and not represented by a separate class.
 - The `getTable()` method in the `TableModel` class acts as the entry point for generating the ASCII table.
 - It coordinates the data retrieval from the Model and formats it for presentation in the View.
+
+![Application Design](/assets/images/application_design.svg)
