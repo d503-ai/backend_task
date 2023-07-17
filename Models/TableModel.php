@@ -24,7 +24,6 @@ class TableModel
     private function getSortedKeys()
     {
         $allKeys = [];
-        // iterate through the input data
         foreach ($this->data as $row) {
             $allKeys = array_merge($allKeys, array_keys($row));
         }
@@ -54,41 +53,43 @@ class TableModel
     private function buildTable($keys, $rows)
     {
         $columnWidths = $this->calculateColumnWidths($keys, $rows);
-
+    
         $table = $this->addHorizontalLine($columnWidths);
-        
-        /* 
-        * Build the header row
-        * Aligh key to the right
-        * with surrounding spaces and separators, to the $headerRow string.
-        */
+    
+        // Build the header row
         $headerRow = '|';
         foreach ($keys as $key) {
-            $headerRow .= ' ' . str_pad($key, $columnWidths[$key], ' ', STR_PAD_LEFT) . ' |';
+            $headerRow .= ' ' . str_pad((string)$key, $columnWidths[$key], ' ', STR_PAD_LEFT) . ' |';
         }
         $table .= $headerRow . PHP_EOL;
-
+    
         // Build the separator row
         $separatorRow = '|';
         foreach ($keys as $key) {
             $separatorRow .= str_repeat('-', $columnWidths[$key] + 2) . '|';
         }
         $table .= $separatorRow . PHP_EOL;
-
+    
         // Build the data rows
         foreach ($rows as $row) {
             $dataRow = '|';
             foreach ($keys as $key) {
+
                 $value = isset($row[$key]) ? $row[$key] : '';
+                // Retrieves the value corresponding to the current key in the $row array. 
+                // If the value is not set, it assigns an empty string to $value.
+                $value = is_array($value) ? implode(', ', $value) : (string)$value;
+                // Checks if the value is an array. If it is, it uses implode() to convert the array elements into a string representation with a comma and space separator.
                 $dataRow .= ' ' . str_pad($value, $columnWidths[$key], ' ', STR_PAD_LEFT) . ' |';
             }
             $table .= $dataRow . PHP_EOL;
         }
-
+    
         $table .= $this->addHorizontalLine($columnWidths);
-
+    
         return $table;
     }
+    
 
     /*
     * Build the horizontal line for the table
@@ -115,25 +116,24 @@ class TableModel
     */
     private function calculateColumnWidths($keys, $rows)
     {
-        // Stores the widths for every key 
         $columnWidths = [];
         foreach ($keys as $key) {
             $columnWidths[$key] = strlen($key);
         }
-
+    
         foreach ($rows as $row) {
             foreach ($keys as $key) {
-                /* 
-                * Compares each value's length with the existing width for the corresponding key
-                * and updates width with the maximum one
-                */
                 $value = isset($row[$key]) ? $row[$key] : '';
+                if (is_array($value)) {
+                    // If the value is an array, convert it to a string representation
+                    $value = implode(', ', $value);
+                }
                 $columnWidths[$key] = max($columnWidths[$key], strlen($value));
             }
         }
-
+    
         return $columnWidths;
-    }
+    }    
 }
 
 ?>
