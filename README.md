@@ -15,10 +15,8 @@ This PHP application generates an ASCII table from a given array. It follows the
 
 1. Ensure you have PHP installed on your system.
 2. Clone the repository or copy the necessary files to your project directory.
-3. Include the necessary files in your PHP script.
-4. Create an instance of the `TableModel` class, passing the input array as a parameter.
-5. Call the `getTable()` method to generate the ASCII table.
-6. Print or display the generated table as needed.
+3. Add your data to `main.php` file
+4. Run the script with php via "php main.php"
 
 ## Design
 The ASCII Table Generator application follows the Model-View-Controller (MVC) architectural pattern. Here's a brief description of each component:
