@@ -1,24 +1,24 @@
 <?php
-require_once 'TableModel.php';
-require_once 'TableView.php';
-require_once 'TableController.php';
+require_once './Models/TableModel.php';
+require_once './Views/TableView.php';
+require_once './Controllers/TableController.php';
 
-// Sample array
+// Input data
 $arr = [
     [
-        'House' => 'Baratheon',
+        123 => 'Baratheon',
         'Sigil' => 'A crowned stag',
-        'Motto' => 'Ours is the Fury',
+        456 => 'Ours is the Fury',
         'Words' => 'Ours is the Fury',
         'Location' => 'Storm\'s End',
     ],
     [
         'Leader' => 'Eddard Stark',
-        'House' => 'Stark',
+        '' => 'Stark',
         'Motto' => 'Winter is Coming',
         'Sigil' => 'A gray direwolf',
-        'Words' => 'Winter is Coming',
-        'Location' => 'Winterfell',
+        'Words' => '',
+        'Location' => 12335,
     ],
     [
         'House' => 'Lannister',
