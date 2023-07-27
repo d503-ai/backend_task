@@ -43,4 +43,3 @@ catch (Throwable $e)
 }
 
 $controller->displayTable();
-?>

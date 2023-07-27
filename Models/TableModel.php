@@ -139,5 +139,3 @@ class TableModel
         return $columnWidths;
     }    
 }
-
-?>

@@ -17,4 +17,3 @@ class TableController
         $this->view->render($table);
     }
 }
-?>

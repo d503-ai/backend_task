@@ -6,4 +6,3 @@ class TableView
         echo $table;
     }
 }
-?>
